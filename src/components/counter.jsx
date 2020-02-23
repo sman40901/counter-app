@@ -20,14 +20,14 @@ class Counter extends Component {
             </ul>);
     }
 
-    constructor(){
-        super();
-        this.handleIncrement = this.handleIncrement.bind(this);
-    }
+    
 
-    handleIncrement(){
-        
-    }
+    handleIncrement = () => {
+        //this.state.count ++;
+        this.setState( {
+            count: this.state.count +1
+        } ); // re state the virtual dom
+    };
 
     render() { 
        
