@@ -21,8 +21,6 @@ class Counters extends Component {
     };
 
     handleReset = () => {
-        //instead of updating the array ourself we create new array and give it to react
-        // it does the updating
         const counters = this.state.counters.map(
              c=>{
                  c.value=0;
@@ -30,6 +28,20 @@ class Counters extends Component {
              }
          );
          this.setState({counters}) ;
+         // no single source of truth right now
+    };
+
+    handleIncrement = counter => {
+        const counters = [...this.state.counters];
+        /*
+        const c1 = this.state.counters.filter(c => c.id == counter.id);
+        console.log(counters);
+        c1.value ++;
+        */
+       const index = counters.indexOf(counter);
+       counters[index] = {...counter};
+       counters[index].value++;
+       this.setState({counters});
     };
 
     render() {
@@ -37,15 +49,16 @@ class Counters extends Component {
             <div>
                  <button
           onClick={this.handleReset}
-          className="btn btn-danger btn-sm"
+          className="btn btn-primary btn-bg"
         >
           Reset
         </button>
                 {this.state.counters.map(counter => (
                     <Counter
                         key={counter.id}
-                        // key attrib interally by react
+                        // key attrib internally by react
                         onDelete={this.handleDelete}
+                        onIncrement = {this.handleIncrement}
                         /*
                         value={counter.value}
                         id={counter.id}

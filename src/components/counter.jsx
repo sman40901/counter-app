@@ -1,21 +1,15 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  state = {
-    value: this.props.counter.value
-  };
+  /* we need to remove this value from local state and only rely on the props 
+  this is a controlled component */
+ 
 
   styles = {
     fontSize: 10,
     fontWeight: "bold"
   };
 
-  handleIncrement = () => {
-    //this.state.count ++;
-    this.setState({
-      value: this.state.value + 1
-    }); // re state the virtual dom
-  };
 
   render() {
     console.log("props", this.props);
@@ -24,7 +18,7 @@ class Counter extends Component {
         <h4>{this.props.counter.id}</h4>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          onClick={this.handleIncrement}
+          onClick={() => this.props.onIncrement(this.props.counter)}
           className="btn btn-secondary btn-sm"
         >
           Increment
@@ -41,13 +35,14 @@ class Counter extends Component {
   }
 
   formatCount() {
-    const { value } = this.state;
+    // don't use this.props.counter.value
+    const { value } = this.props.counter;
     return value === 0 ? "Zero" : value;
   }
 
   getBadgeClasses() {
     let classes = "badge  m-2 badge-";
-    classes += this.state.value === 0 ? "warning" : "primary";
+    classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
 }
