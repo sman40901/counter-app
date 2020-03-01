@@ -19,6 +19,19 @@ class App extends Component {
     ]
   };
 
+  // we always need to pass props to constructor if we need to manipulate it
+  constructor (props) {
+    super(props);
+    console.log('app-constructor');
+    //this.state = this.props.
+  }
+
+  componentDidMount(){
+    // perfect calls to make ajax calls to get data from server
+    //this.setState();
+    console.log('app-did mount');
+  }
+
   handleDelete = counterId => {
     //instead of updating the array ourself we create new array and give it to react
     // it does the updating
@@ -53,6 +66,8 @@ class App extends Component {
   };
 
   render() {
+    // all the children is also rendered recursively
+    console.log('app = render')
     return (
       <React.Fragment>
         <NavBar totalCounters = {this.state.counters.length}/>

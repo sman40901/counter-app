@@ -5,6 +5,7 @@ class Counters extends Component {
    
 
     render() {
+        console.log('counters - rendered');
         return (
             <div>
                  <button
