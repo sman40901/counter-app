@@ -3,25 +3,25 @@ import React, { Component } from "react";
 class Counter extends Component {
   /* we need to remove this value from local state and only rely on the props 
   this is a controlled component */
- 
+
 
   styles = {
     fontSize: 10,
     fontWeight: "bold"
   };
 
-  componentDidUpdate (prevProps, prevState){
+  componentDidUpdate(prevProps, prevState) {
     console.log('counter - did update')
-    console.log ('prevProps', prevProps);
-    console.log ('prevState', prevState);
-    if(prevProps.counter.value !== this.props.counter.value){
+    console.log('prevProps', prevProps);
+    console.log('prevState', prevState);
+    if (prevProps.counter.value !== this.props.counter.value) {
       // ajax call and get new data from the server
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     console.log('counter - unmount')
-   
+
   }
 
   render() {
@@ -37,9 +37,16 @@ class Counter extends Component {
         >
           Increment
         </button>
-        &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;
         <button
-          onClick={ () => this.props.onDelete(this.props.counter.id)}
+          onClick={() => this.props.onDecrement(this.props.counter)}
+          className="btn btn-secondary btn-sm"
+        >
+          Decrement
+        </button>
+        &nbsp;&nbsp;
+        <button
+          onClick={() => this.props.onDelete(this.props.counter.id)}
           className="btn btn-danger btn-sm"
         >
           Delete
@@ -51,7 +58,7 @@ class Counter extends Component {
   formatCount() {
     // don't use this.props.counter.value
     const { value } = this.props.counter;
-    return value === 0 ? "Zero" : value;
+    return value === 0 ? 0 : value;
   }
 
   getBadgeClasses() {
