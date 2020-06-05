@@ -13,7 +13,14 @@ class Counters extends Component {
                     className="btn btn-primary btn-bg"
                 >
                     Reset
-        </button>
+                </button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button
+                    onClick={this.props.onAddCounter}
+                    className="btn btn-primary btn-bg"
+                >
+                    Add Counter
+                </button>
                 {this.props.counters.map(counter => (
                     <Counter
                         key={counter.id}
@@ -21,7 +28,7 @@ class Counters extends Component {
                         onDelete={this.props.onDelete}
                         onIncrement={this.props.onIncrement}
                         onDecrement={this.props.onDecrement}
-                        onCalculateTotalValue ={this.props.onCalculateTotalValue}
+                        onCalculateTotalValue={this.props.onCalculateTotalValue}
                         /*
                         value={counter.value}
                         id={counter.id}

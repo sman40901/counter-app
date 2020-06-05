@@ -3,7 +3,9 @@ import logo from "./logo.svg";
 import "./App.css";
 import NavBar from "./components/navbar";
 import Counters from "./components/counters";
+import Counter from "./components/counter";
 import { render } from "@testing-library/react";
+//import { Alert } from 'react-alert'
 
 class App extends Component {
   // passing counters to the app which is the root
@@ -27,27 +29,39 @@ class App extends Component {
   }
 
   calculateTotalValue = (props) => {
+    //alert("calculate Total Value");
     let totalValue = 0.0;
-    totalValue += this.state.counters.map(c => {
-      return c.value;
-    });
-    console.log("app-did mount" + totalValue);
-    this.setState({ totalValue });
+    (this.state.counters.map(c => {
+      totalValue += c.value;
+    }));
+    return totalValue;
   }
 
+  
   componentDidMount() {
     // perfect calls to make ajax calls to get data from server
     //this.setState();
-    console.log("app-did mount");
+    alert("app-did mount");
     
-    this.calculateTotalValue();
+    const totalValue = this.calculateTotalValue();
+    //alert("inside handleIncrement : " + totalValue);
+    this.setState({ totalValue });
   }
+  
 
   handleDelete = counterId => {
     //instead of updating the array ourself we create new array and give it to react
     // it does the updating
     const counters = this.state.counters.filter(c => c.id !== counterId);
     this.setState({ counters /* key */: counters /*value*/ });
+  };
+
+  handleAddCounter = () =>{
+    alert("add counter clicked" + this.state.counters);
+    let c1 = new Counter();
+    const counters = this.state.counters;
+    counters.concat(c1);
+    this.setState({ counters : counters });
   };
 
   handleReset = () => {
@@ -76,6 +90,7 @@ class App extends Component {
     counters[index] = { ...counter };
     counters[index].value++;
     const totalValue = this.calculateTotalValue();
+    //alert("inside handleIncrement : " + totalValue);
     this.setState({ counters , totalValue });
   };
 
@@ -90,10 +105,12 @@ class App extends Component {
    we are creating a clone of a counter because in react, 
    manipulating object states is a big no no re
    */
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value--;
-    this.setState({ counters });
+      const index = counters.indexOf(counter);
+      counters[index] = { ...counter };
+      counters[index].value--;
+      const totalValue = this.calculateTotalValue();
+      //alert("inside handleIncrement : " + totalValue);
+      this.setState({ counters , totalValue });
   };
 
   render() {
@@ -112,6 +129,7 @@ class App extends Component {
             onIncrement={this.handleIncrement}
             onDecrement={this.handleDecrement}
             onReset={this.handleReset}
+            onAddCounter = {this.handleAddCounter}
           />
         </main>
       </React.Fragment>

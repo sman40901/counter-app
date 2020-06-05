@@ -27,10 +27,14 @@ class NavBar extends Component {
             <nav className="navbar navbar-light bg-light">
 
                 <a className="navbar-brand mb-0 h1">
-                    Navbar &nbsp;
+                    Counter App &nbsp;<br></br>
+                    <span> Number of Counters </span>
+                    &nbsp;
                     <span className='badge badge-pill badge-secondary'>
                         {totalCounters}
                     </span>
+                    &nbsp;
+                    <span> Total value </span>
                     &nbsp;
                     <span className='badge badge-pill badge-secondary'>
                         {totalValue}
