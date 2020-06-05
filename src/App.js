@@ -13,6 +13,7 @@ class App extends Component {
   state = {
     totalValue: 0,
     imageUrl: "https://picsum.photos/200",
+
     counters: [
       { id: 1, value: 4 },
       { id: 2, value: 0 },
@@ -41,7 +42,7 @@ class App extends Component {
   componentDidMount() {
     // perfect calls to make ajax calls to get data from server
     //this.setState();
-    alert("app-did mount");
+    //alert("app-did mount");
     
     const totalValue = this.calculateTotalValue();
     //alert("inside handleIncrement : " + totalValue);
