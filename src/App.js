@@ -57,7 +57,7 @@ class App extends Component {
   };
 
   handleAddCounter = () =>{
-    alert("add counter clicked" + this.state.counters);
+    //alert("add counter clicked" + this.state.counters);
     let c1 = new Counter();
     const counters = this.state.counters;
     counters.concat(c1);
@@ -84,7 +84,7 @@ class App extends Component {
     */
     /*
    we are creating a clone of a counter because in react, 
-   manipulating object states is a big no no re
+   manipulating object states is a big no no 
    */
     const index = counters.indexOf(counter);
     counters[index] = { ...counter };
@@ -103,7 +103,7 @@ class App extends Component {
     */
     /*
    we are creating a clone of a counter because in react, 
-   manipulating object states is a big no no re
+   manipulating object states is a big no no 
    */
       const index = counters.indexOf(counter);
       counters[index] = { ...counter };
