@@ -90,9 +90,10 @@ class App extends Component {
     const index = counters.indexOf(counter);
     counters[index] = { ...counter };
     counters[index].value++;
+    this.setState({counters})
     const totalValue = this.calculateTotalValue();
     //alert("inside handleIncrement : " + totalValue);
-    this.setState({ counters , totalValue });
+    this.setState({ totalValue });
   };
 
   handleDecrement = counter => {
